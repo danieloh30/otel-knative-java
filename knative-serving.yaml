@@ -1,0 +1,12 @@
+kind: KnativeServing
+apiVersion: operator.knative.dev/v1alpha1
+metadata:
+  name: knative-serving
+  namespace: knative-serving
+spec:
+  config:
+    tracing:
+      "backend": "zipkin"
+      "zipkin-endpoint": "http://cluster-collector-collector-headless.quarkus-opentelemetry.svc:9411/api/v2/spans"
+      "debug": "true"
+      sample-rate: "1"
