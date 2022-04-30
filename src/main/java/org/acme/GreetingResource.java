@@ -30,7 +30,7 @@ public class GreetingResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     @Path("/greeting")
-    public String hogreetingla() {
+    public String greeting() {
         LOG.info("Welcome Quarkus and Opentelmetry!");
         return "Welcome Quarkus and Opentelmetry!";
     }
