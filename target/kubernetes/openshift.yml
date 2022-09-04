@@ -4,112 +4,111 @@ kind: Service
 metadata:
   annotations:
     app.openshift.io/vcs-url: <<unknown>>
-    app.quarkus.io/build-timestamp: 2022-04-30 - 03:41:40 +0000
+    app.quarkus.io/commit-id: 388a38bfe03022d5eca1fb43a5a1617f9c07f924
+    app.quarkus.io/build-timestamp: 2022-09-04 - 04:59:37 +0000
   labels:
-    app.kubernetes.io/name: quarkus-opentelmetry
+    app.kubernetes.io/name: 'myservice '
     app.kubernetes.io/version: 1.0.0-SNAPSHOT
     app.openshift.io/runtime: quarkus
-  name: quarkus-opentelmetry
+  name: 'myservice '
 spec:
   ports:
     - name: http
       port: 80
       targetPort: 8080
   selector:
-    app.kubernetes.io/name: quarkus-opentelmetry
+    app.kubernetes.io/name: 'myservice '
     app.kubernetes.io/version: 1.0.0-SNAPSHOT
   type: ClusterIP
 ---
 apiVersion: image.openshift.io/v1
 kind: ImageStream
 metadata:
+  annotations:
+    app.openshift.io/vcs-url: <<unknown>>
+    app.quarkus.io/commit-id: 388a38bfe03022d5eca1fb43a5a1617f9c07f924
+    app.quarkus.io/build-timestamp: 2022-09-04 - 04:59:37 +0000
   labels:
-    app.kubernetes.io/name: quarkus-opentelmetry
+    app.kubernetes.io/name: 'myservice '
     app.kubernetes.io/version: 1.0.0-SNAPSHOT
-  name: openjdk-11
-spec:
-  dockerImageRepository: registry.access.redhat.com/ubi8/openjdk-11
+    app.openshift.io/runtime: quarkus
+  name: 'myservice '
+spec: {}
 ---
 apiVersion: image.openshift.io/v1
 kind: ImageStream
 metadata:
-  annotations:
-    app.openshift.io/vcs-url: <<unknown>>
-    app.quarkus.io/build-timestamp: 2022-04-30 - 03:41:40 +0000
   labels:
-    app.kubernetes.io/name: quarkus-opentelmetry
+    app.kubernetes.io/name: 'myservice '
     app.kubernetes.io/version: 1.0.0-SNAPSHOT
-    app.openshift.io/runtime: quarkus
-  name: quarkus-opentelmetry
-spec: {}
+  name: s2i-java
+spec:
+  dockerImageRepository: fabric8/s2i-java
 ---
 apiVersion: build.openshift.io/v1
 kind: BuildConfig
 metadata:
   annotations:
     app.openshift.io/vcs-url: <<unknown>>
-    app.quarkus.io/build-timestamp: 2022-04-30 - 03:41:40 +0000
+    app.quarkus.io/commit-id: 388a38bfe03022d5eca1fb43a5a1617f9c07f924
+    app.quarkus.io/build-timestamp: 2022-09-04 - 04:59:37 +0000
   labels:
-    app.kubernetes.io/name: quarkus-opentelmetry
+    app.kubernetes.io/name: 'myservice '
     app.kubernetes.io/version: 1.0.0-SNAPSHOT
     app.openshift.io/runtime: quarkus
-  name: quarkus-opentelmetry
+  name: 'myservice '
 spec:
   output:
     to:
       kind: ImageStreamTag
-      name: quarkus-opentelmetry:1.0.0-SNAPSHOT
+      name: myservice :1.0.0-SNAPSHOT
   source:
     binary: {}
   strategy:
     sourceStrategy:
       from:
         kind: ImageStreamTag
-        name: openjdk-11:1.11
+        name: s2i-java:2.3
 ---
 apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
 metadata:
   annotations:
     app.openshift.io/vcs-url: <<unknown>>
-    app.quarkus.io/build-timestamp: 2022-04-30 - 03:41:40 +0000
+    app.quarkus.io/commit-id: 388a38bfe03022d5eca1fb43a5a1617f9c07f924
+    app.quarkus.io/build-timestamp: 2022-09-04 - 04:59:37 +0000
   labels:
-    app.kubernetes.io/name: quarkus-opentelmetry
+    app.kubernetes.io/name: 'myservice '
     app.kubernetes.io/version: 1.0.0-SNAPSHOT
     app.openshift.io/runtime: quarkus
-  name: quarkus-opentelmetry
+  name: 'myservice '
 spec:
   replicas: 1
   selector:
     app.kubernetes.io/version: 1.0.0-SNAPSHOT
-    app.kubernetes.io/name: quarkus-opentelmetry
+    app.kubernetes.io/name: 'myservice '
   template:
     metadata:
       annotations:
         app.openshift.io/vcs-url: <<unknown>>
-        app.quarkus.io/build-timestamp: 2022-04-30 - 03:41:40 +0000
+        app.quarkus.io/commit-id: 388a38bfe03022d5eca1fb43a5a1617f9c07f924
+        app.quarkus.io/build-timestamp: 2022-09-04 - 04:59:37 +0000
       labels:
-        app.kubernetes.io/name: quarkus-opentelmetry
         app.kubernetes.io/version: 1.0.0-SNAPSHOT
+        app.kubernetes.io/name: 'myservice '
         app.openshift.io/runtime: quarkus
     spec:
       containers:
-        - command:
-            - java
-            - -Dquarkus.http.host=0.0.0.0
-            - -Djava.util.logging.manager=org.jboss.logmanager.LogManager
-            - -jar
-            - /deployments/quarkus-run.jar
-          env:
+        - env:
             - name: KUBERNETES_NAMESPACE
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
             - name: JAVA_APP_JAR
-              value: /deployments/quarkus-run.jar
-          image: image-registry.openshift-image-registry.svc:5000/quarkus-opentelemetry/quarkus-opentelmetry:1.0.0-SNAPSHOT
+              value: /deployments/otel-knative-java-1.0.0-SNAPSHOT-runner.jar
+          image: danieloh/myservice:1.0.0-SNAPSHOT
           imagePullPolicy: Always
-          name: quarkus-opentelmetry
+          name: 'myservice '
           ports:
             - containerPort: 8080
               name: http
@@ -118,26 +117,8 @@ spec:
     - imageChangeParams:
         automatic: true
         containerNames:
-          - quarkus-opentelmetry
+          - 'myservice '
         from:
           kind: ImageStreamTag
-          name: quarkus-opentelmetry:1.0.0-SNAPSHOT
+          name: myservice :1.0.0-SNAPSHOT
       type: ImageChange
----
-apiVersion: route.openshift.io/v1
-kind: Route
-metadata:
-  annotations:
-    app.openshift.io/vcs-url: <<unknown>>
-    app.quarkus.io/build-timestamp: 2022-04-30 - 03:41:40 +0000
-  labels:
-    app.kubernetes.io/name: quarkus-opentelmetry
-    app.kubernetes.io/version: 1.0.0-SNAPSHOT
-    app.openshift.io/runtime: quarkus
-  name: quarkus-opentelmetry
-spec:
-  port:
-    targetPort: 8080
-  to:
-    kind: Service
-    name: quarkus-opentelmetry

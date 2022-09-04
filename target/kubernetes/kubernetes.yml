@@ -3,7 +3,8 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2022-04-30 - 03:35:10 +0000
+    app.quarkus.io/commit-id: 388a38bfe03022d5eca1fb43a5a1617f9c07f924
+    app.quarkus.io/build-timestamp: 2022-09-04 - 04:59:37 +0000
   labels:
     app.kubernetes.io/name: 'myservice '
     app.kubernetes.io/version: 1.0.0-SNAPSHOT
@@ -22,24 +23,26 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2022-04-30 - 03:35:10 +0000
+    app.quarkus.io/commit-id: 388a38bfe03022d5eca1fb43a5a1617f9c07f924
+    app.quarkus.io/build-timestamp: 2022-09-04 - 04:59:37 +0000
   labels:
-    app.kubernetes.io/name: 'myservice '
     app.kubernetes.io/version: 1.0.0-SNAPSHOT
+    app.kubernetes.io/name: 'myservice '
   name: 'myservice '
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: 'myservice '
       app.kubernetes.io/version: 1.0.0-SNAPSHOT
+      app.kubernetes.io/name: 'myservice '
   template:
     metadata:
       annotations:
-        app.quarkus.io/build-timestamp: 2022-04-30 - 03:35:10 +0000
+        app.quarkus.io/commit-id: 388a38bfe03022d5eca1fb43a5a1617f9c07f924
+        app.quarkus.io/build-timestamp: 2022-09-04 - 04:59:37 +0000
       labels:
-        app.kubernetes.io/name: 'myservice '
         app.kubernetes.io/version: 1.0.0-SNAPSHOT
+        app.kubernetes.io/name: 'myservice '
     spec:
       containers:
         - env:
