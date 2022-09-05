@@ -1,8 +1,8 @@
 apiVersion: opentelemetry.io/v1alpha1
 kind: OpenTelemetryCollector
 metadata:
-  name: cluster-collector
-  namespace: quarkus-opentelemetry
+  name: otel
+  namespace: otel-knative-java
 spec:
   mode: deployment
   config: |
@@ -11,7 +11,7 @@ spec:
     processors:
     exporters:
       jaeger:
-        endpoint: jaeger-all-in-one-inmemory-collector-headless.quarkus-opentelemetry.svc:14250
+        endpoint: my-jaeger-collector-headless.otel-knative-java.svc:14250
         tls:
           ca_file: "/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt"
       logging:

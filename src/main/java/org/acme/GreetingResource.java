@@ -5,12 +5,16 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.jboss.logging.Logger;
 
 @Path("/hello")
 public class GreetingResource {
 
     private static final Logger LOG = Logger.getLogger(GreetingResource.class);
+
+    @ConfigProperty(name = "username")
+    String username;
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
@@ -21,18 +25,18 @@ public class GreetingResource {
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    @Path("/hola")
-    public String hola() {
-        LOG.info("Hola Daniel");
-        return "Hola Daniel";
+    @Path("greeting")
+    public String greeting() {
+        LOG.info("Welcome OSS EU, " + username);
+        return "Welcome OSS EU, " + username;
     }
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    @Path("/greeting")
-    public String greeting() {
-        LOG.info("Welcome Quarkus and Opentelmetry!");
-        return "Welcome Quarkus and Opentelmetry!";
+    @Path("otel")
+    public String hola() {
+        LOG.info("Distributed Tracing integrating with Quarkus, Knative and Otel!!");
+        return "Distributed Tracing integrating with Quarkus, Knative and Otel!!";
     }
 
 }

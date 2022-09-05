@@ -3,14 +3,14 @@
   "kind" : "Service",
   "metadata" : {
     "annotations" : {
-      "app.quarkus.io/commit-id" : "388a38bfe03022d5eca1fb43a5a1617f9c07f924",
-      "app.quarkus.io/build-timestamp" : "2022-09-04 - 04:59:37 +0000"
+      "app.quarkus.io/commit-id" : "5e02534c7abafda424c6fe491fb7e78f60bc89b1",
+      "app.quarkus.io/build-timestamp" : "2022-09-05 - 02:41:22 +0000"
     },
     "labels" : {
-      "app.kubernetes.io/name" : "myservice ",
+      "app.kubernetes.io/name" : "myservice",
       "app.kubernetes.io/version" : "1.0.0-SNAPSHOT"
     },
-    "name" : "myservice "
+    "name" : "myservice"
   },
   "spec" : {
     "ports" : [ {
@@ -19,7 +19,7 @@
       "targetPort" : 8080
     } ],
     "selector" : {
-      "app.kubernetes.io/name" : "myservice ",
+      "app.kubernetes.io/name" : "myservice",
       "app.kubernetes.io/version" : "1.0.0-SNAPSHOT"
     },
     "type" : "ClusterIP"
@@ -29,32 +29,32 @@
   "kind" : "Deployment",
   "metadata" : {
     "annotations" : {
-      "app.quarkus.io/commit-id" : "388a38bfe03022d5eca1fb43a5a1617f9c07f924",
-      "app.quarkus.io/build-timestamp" : "2022-09-04 - 04:59:37 +0000"
+      "app.quarkus.io/commit-id" : "5e02534c7abafda424c6fe491fb7e78f60bc89b1",
+      "app.quarkus.io/build-timestamp" : "2022-09-05 - 02:41:22 +0000"
     },
     "labels" : {
-      "app.kubernetes.io/version" : "1.0.0-SNAPSHOT",
-      "app.kubernetes.io/name" : "myservice "
+      "app.kubernetes.io/name" : "myservice",
+      "app.kubernetes.io/version" : "1.0.0-SNAPSHOT"
     },
-    "name" : "myservice "
+    "name" : "myservice"
   },
   "spec" : {
     "replicas" : 1,
     "selector" : {
       "matchLabels" : {
-        "app.kubernetes.io/version" : "1.0.0-SNAPSHOT",
-        "app.kubernetes.io/name" : "myservice "
+        "app.kubernetes.io/name" : "myservice",
+        "app.kubernetes.io/version" : "1.0.0-SNAPSHOT"
       }
     },
     "template" : {
       "metadata" : {
         "annotations" : {
-          "app.quarkus.io/commit-id" : "388a38bfe03022d5eca1fb43a5a1617f9c07f924",
-          "app.quarkus.io/build-timestamp" : "2022-09-04 - 04:59:37 +0000"
+          "app.quarkus.io/commit-id" : "5e02534c7abafda424c6fe491fb7e78f60bc89b1",
+          "app.quarkus.io/build-timestamp" : "2022-09-05 - 02:41:22 +0000"
         },
         "labels" : {
-          "app.kubernetes.io/version" : "1.0.0-SNAPSHOT",
-          "app.kubernetes.io/name" : "myservice "
+          "app.kubernetes.io/name" : "myservice",
+          "app.kubernetes.io/version" : "1.0.0-SNAPSHOT"
         }
       },
       "spec" : {
@@ -69,7 +69,7 @@
           } ],
           "image" : "danieloh/myservice:1.0.0-SNAPSHOT",
           "imagePullPolicy" : "Always",
-          "name" : "myservice ",
+          "name" : "myservice",
           "ports" : [ {
             "containerPort" : 8080,
             "name" : "http",

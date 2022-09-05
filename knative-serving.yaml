@@ -7,6 +7,6 @@ spec:
   config:
     tracing:
       "backend": "zipkin"
-      "zipkin-endpoint": "http://cluster-collector-collector-headless.quarkus-opentelemetry.svc:9411/api/v2/spans"
+      "zipkin-endpoint": "http://my-jaeger-collector-headless.otel-knative-java.svc:9411/api/v2/spans"
       "debug": "true"
       sample-rate: "1"
