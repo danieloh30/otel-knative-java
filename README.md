@@ -1,4 +1,4 @@
-# quarkus-opentelmetry Project
+# Distributed Tracing Integration with OpenTelemetry, Knative, and Quarkus
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
