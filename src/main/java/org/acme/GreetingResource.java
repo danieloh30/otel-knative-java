@@ -27,8 +27,8 @@ public class GreetingResource {
     @Produces(MediaType.TEXT_PLAIN)
     @Path("greeting")
     public String greeting() {
-        LOG.info("Welcome OSS EU, " + username);
-        return "Welcome OSS EU, " + username;
+        LOG.info("Welcome OSS Japan 2022, " + username);
+        return "Welcome OSS Japan 2022, " + username;
     }
 
     @GET

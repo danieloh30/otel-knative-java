@@ -1,30 +1,10 @@
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  annotations:
-    app.quarkus.io/commit-id: 5e02534c7abafda424c6fe491fb7e78f60bc89b1
-    app.quarkus.io/build-timestamp: 2022-09-05 - 02:41:22 +0000
-  labels:
-    app.kubernetes.io/name: myservice
-    app.kubernetes.io/version: 1.0.0-SNAPSHOT
-  name: myservice
-spec:
-  ports:
-    - name: http
-      port: 80
-      targetPort: 8080
-  selector:
-    app.kubernetes.io/name: myservice
-    app.kubernetes.io/version: 1.0.0-SNAPSHOT
-  type: ClusterIP
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    app.quarkus.io/commit-id: 5e02534c7abafda424c6fe491fb7e78f60bc89b1
-    app.quarkus.io/build-timestamp: 2022-09-05 - 02:41:22 +0000
+    app.quarkus.io/commit-id: 9b14e405630fc92e00b8ef34b27c0980dcbb8005
+    app.quarkus.io/build-timestamp: 2022-11-28 - 04:56:58 +0000
   labels:
     app.kubernetes.io/name: myservice
     app.kubernetes.io/version: 1.0.0-SNAPSHOT
@@ -38,8 +18,8 @@ spec:
   template:
     metadata:
       annotations:
-        app.quarkus.io/commit-id: 5e02534c7abafda424c6fe491fb7e78f60bc89b1
-        app.quarkus.io/build-timestamp: 2022-09-05 - 02:41:22 +0000
+        app.quarkus.io/commit-id: 9b14e405630fc92e00b8ef34b27c0980dcbb8005
+        app.quarkus.io/build-timestamp: 2022-11-28 - 04:56:58 +0000
       labels:
         app.kubernetes.io/name: myservice
         app.kubernetes.io/version: 1.0.0-SNAPSHOT
@@ -57,3 +37,24 @@ spec:
             - containerPort: 8080
               name: http
               protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    app.quarkus.io/commit-id: 9b14e405630fc92e00b8ef34b27c0980dcbb8005
+    app.quarkus.io/build-timestamp: 2022-11-28 - 04:56:58 +0000
+  labels:
+    app.kubernetes.io/name: myservice
+    app.kubernetes.io/version: 1.0.0-SNAPSHOT
+  name: myservice
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app.kubernetes.io/name: myservice
+    app.kubernetes.io/version: 1.0.0-SNAPSHOT
+  type: ClusterIP

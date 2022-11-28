@@ -1,134 +1,40 @@
 [{
-  "apiVersion" : "v1",
-  "kind" : "Service",
-  "metadata" : {
-    "annotations" : {
-      "app.openshift.io/vcs-url" : "<<unknown>>",
-      "app.quarkus.io/commit-id" : "5e02534c7abafda424c6fe491fb7e78f60bc89b1",
-      "app.quarkus.io/build-timestamp" : "2022-09-05 - 02:54:40 +0000"
-    },
-    "labels" : {
-      "app.kubernetes.io/name" : "otel-knative-java",
-      "app.kubernetes.io/version" : "1.0.0-SNAPSHOT",
-      "app.openshift.io/runtime" : "quarkus"
-    },
-    "name" : "otel-knative-java"
-  },
-  "spec" : {
-    "ports" : [ {
-      "name" : "http",
-      "port" : 80,
-      "targetPort" : 8080
-    } ],
-    "selector" : {
-      "app.kubernetes.io/name" : "otel-knative-java",
-      "app.kubernetes.io/version" : "1.0.0-SNAPSHOT"
-    },
-    "type" : "ClusterIP"
-  }
-},{
-  "apiVersion" : "image.openshift.io/v1",
-  "kind" : "ImageStream",
-  "metadata" : {
-    "labels" : {
-      "app.kubernetes.io/name" : "otel-knative-java",
-      "app.kubernetes.io/version" : "1.0.0-SNAPSHOT"
-    },
-    "name" : "openjdk-11"
-  },
-  "spec" : {
-    "dockerImageRepository" : "registry.access.redhat.com/ubi8/openjdk-11"
-  }
-},{
-  "apiVersion" : "image.openshift.io/v1",
-  "kind" : "ImageStream",
-  "metadata" : {
-    "annotations" : {
-      "app.openshift.io/vcs-url" : "<<unknown>>",
-      "app.quarkus.io/commit-id" : "5e02534c7abafda424c6fe491fb7e78f60bc89b1",
-      "app.quarkus.io/build-timestamp" : "2022-09-05 - 02:54:40 +0000"
-    },
-    "labels" : {
-      "app.kubernetes.io/name" : "otel-knative-java",
-      "app.kubernetes.io/version" : "1.0.0-SNAPSHOT",
-      "app.openshift.io/runtime" : "quarkus"
-    },
-    "name" : "otel-knative-java"
-  },
-  "spec" : { }
-},{
-  "apiVersion" : "build.openshift.io/v1",
-  "kind" : "BuildConfig",
-  "metadata" : {
-    "annotations" : {
-      "app.openshift.io/vcs-url" : "<<unknown>>",
-      "app.quarkus.io/commit-id" : "5e02534c7abafda424c6fe491fb7e78f60bc89b1",
-      "app.quarkus.io/build-timestamp" : "2022-09-05 - 02:54:40 +0000"
-    },
-    "labels" : {
-      "app.kubernetes.io/name" : "otel-knative-java",
-      "app.kubernetes.io/version" : "1.0.0-SNAPSHOT",
-      "app.openshift.io/runtime" : "quarkus"
-    },
-    "name" : "otel-knative-java"
-  },
-  "spec" : {
-    "output" : {
-      "to" : {
-        "kind" : "ImageStreamTag",
-        "name" : "otel-knative-java:1.0.0-SNAPSHOT"
-      }
-    },
-    "source" : {
-      "binary" : { }
-    },
-    "strategy" : {
-      "sourceStrategy" : {
-        "from" : {
-          "kind" : "ImageStreamTag",
-          "name" : "openjdk-11:1.11"
-        }
-      }
-    }
-  }
-},{
   "apiVersion" : "apps.openshift.io/v1",
   "kind" : "DeploymentConfig",
   "metadata" : {
     "annotations" : {
       "app.openshift.io/vcs-url" : "<<unknown>>",
-      "app.quarkus.io/commit-id" : "5e02534c7abafda424c6fe491fb7e78f60bc89b1",
-      "app.quarkus.io/build-timestamp" : "2022-09-05 - 02:54:40 +0000"
+      "app.quarkus.io/commit-id" : "9b14e405630fc92e00b8ef34b27c0980dcbb8005",
+      "app.quarkus.io/build-timestamp" : "2022-11-28 - 04:56:58 +0000"
     },
     "labels" : {
-      "app.kubernetes.io/name" : "otel-knative-java",
+      "app.kubernetes.io/name" : "myservice",
       "app.kubernetes.io/version" : "1.0.0-SNAPSHOT",
       "app.openshift.io/runtime" : "quarkus"
     },
-    "name" : "otel-knative-java"
+    "name" : "myservice"
   },
   "spec" : {
     "replicas" : 1,
     "selector" : {
-      "app.kubernetes.io/name" : "otel-knative-java",
+      "app.kubernetes.io/name" : "myservice",
       "app.kubernetes.io/version" : "1.0.0-SNAPSHOT"
     },
     "template" : {
       "metadata" : {
         "annotations" : {
           "app.openshift.io/vcs-url" : "<<unknown>>",
-          "app.quarkus.io/commit-id" : "5e02534c7abafda424c6fe491fb7e78f60bc89b1",
-          "app.quarkus.io/build-timestamp" : "2022-09-05 - 02:54:40 +0000"
+          "app.quarkus.io/commit-id" : "9b14e405630fc92e00b8ef34b27c0980dcbb8005",
+          "app.quarkus.io/build-timestamp" : "2022-11-28 - 04:56:58 +0000"
         },
         "labels" : {
-          "app.kubernetes.io/name" : "otel-knative-java",
+          "app.kubernetes.io/name" : "myservice",
           "app.kubernetes.io/version" : "1.0.0-SNAPSHOT",
           "app.openshift.io/runtime" : "quarkus"
         }
       },
       "spec" : {
         "containers" : [ {
-          "command" : [ "java", "-jar", "/deployments/quarkus-run.jar" ],
           "env" : [ {
             "name" : "KUBERNETES_NAMESPACE",
             "valueFrom" : {
@@ -138,11 +44,11 @@
             }
           }, {
             "name" : "JAVA_APP_JAR",
-            "value" : "/deployments/otel-knative-java-1.0.0-SNAPSHOT-runner.jar"
+            "value" : "/deployments/quarkus-run.jar"
           } ],
-          "image" : "image-registry.openshift-image-registry.svc:5000/otel-knative-java/otel-knative-java:1.0.0-SNAPSHOT",
+          "image" : "danieloh/myservice:1.0.0-SNAPSHOT",
           "imagePullPolicy" : "Always",
-          "name" : "otel-knative-java",
+          "name" : "myservice",
           "ports" : [ {
             "containerPort" : 8080,
             "name" : "http",
@@ -154,38 +60,107 @@
     "triggers" : [ {
       "imageChangeParams" : {
         "automatic" : true,
-        "containerNames" : [ "otel-knative-java" ],
+        "containerNames" : [ "myservice" ],
         "from" : {
           "kind" : "ImageStreamTag",
-          "name" : "otel-knative-java:1.0.0-SNAPSHOT"
+          "name" : "myservice:1.0.0-SNAPSHOT"
         }
       },
       "type" : "ImageChange"
     } ]
   }
 },{
-  "apiVersion" : "route.openshift.io/v1",
-  "kind" : "Route",
+  "apiVersion" : "v1",
+  "kind" : "Service",
   "metadata" : {
     "annotations" : {
       "app.openshift.io/vcs-url" : "<<unknown>>",
-      "app.quarkus.io/commit-id" : "5e02534c7abafda424c6fe491fb7e78f60bc89b1",
-      "app.quarkus.io/build-timestamp" : "2022-09-05 - 02:54:40 +0000"
+      "app.quarkus.io/commit-id" : "9b14e405630fc92e00b8ef34b27c0980dcbb8005",
+      "app.quarkus.io/build-timestamp" : "2022-11-28 - 04:56:58 +0000"
     },
     "labels" : {
-      "app.kubernetes.io/name" : "otel-knative-java",
+      "app.kubernetes.io/name" : "myservice",
       "app.kubernetes.io/version" : "1.0.0-SNAPSHOT",
       "app.openshift.io/runtime" : "quarkus"
     },
-    "name" : "otel-knative-java"
+    "name" : "myservice"
   },
   "spec" : {
-    "port" : {
+    "ports" : [ {
+      "name" : "http",
+      "port" : 80,
+      "protocol" : "TCP",
       "targetPort" : 8080
+    } ],
+    "selector" : {
+      "app.kubernetes.io/name" : "myservice",
+      "app.kubernetes.io/version" : "1.0.0-SNAPSHOT"
     },
-    "to" : {
-      "kind" : "Service",
-      "name" : "otel-knative-java"
+    "type" : "ClusterIP"
+  }
+},{
+  "apiVersion" : "image.openshift.io/v1",
+  "kind" : "ImageStream",
+  "metadata" : {
+    "labels" : {
+      "app.kubernetes.io/name" : "myservice",
+      "app.kubernetes.io/version" : "1.0.0-SNAPSHOT"
+    },
+    "name" : "s2i-java"
+  },
+  "spec" : {
+    "dockerImageRepository" : "fabric8/s2i-java"
+  }
+},{
+  "apiVersion" : "image.openshift.io/v1",
+  "kind" : "ImageStream",
+  "metadata" : {
+    "annotations" : {
+      "app.openshift.io/vcs-url" : "<<unknown>>",
+      "app.quarkus.io/commit-id" : "9b14e405630fc92e00b8ef34b27c0980dcbb8005",
+      "app.quarkus.io/build-timestamp" : "2022-11-28 - 04:56:58 +0000"
+    },
+    "labels" : {
+      "app.kubernetes.io/name" : "myservice",
+      "app.kubernetes.io/version" : "1.0.0-SNAPSHOT",
+      "app.openshift.io/runtime" : "quarkus"
+    },
+    "name" : "myservice"
+  },
+  "spec" : { }
+},{
+  "apiVersion" : "build.openshift.io/v1",
+  "kind" : "BuildConfig",
+  "metadata" : {
+    "annotations" : {
+      "app.openshift.io/vcs-url" : "<<unknown>>",
+      "app.quarkus.io/commit-id" : "9b14e405630fc92e00b8ef34b27c0980dcbb8005",
+      "app.quarkus.io/build-timestamp" : "2022-11-28 - 04:56:58 +0000"
+    },
+    "labels" : {
+      "app.kubernetes.io/name" : "myservice",
+      "app.kubernetes.io/version" : "1.0.0-SNAPSHOT",
+      "app.openshift.io/runtime" : "quarkus"
+    },
+    "name" : "myservice"
+  },
+  "spec" : {
+    "output" : {
+      "to" : {
+        "kind" : "ImageStreamTag",
+        "name" : "myservice:1.0.0-SNAPSHOT"
+      }
+    },
+    "source" : {
+      "binary" : { }
+    },
+    "strategy" : {
+      "sourceStrategy" : {
+        "from" : {
+          "kind" : "ImageStreamTag",
+          "name" : "s2i-java:2.3"
+        }
+      }
     }
   }
 }]
