@@ -3,29 +3,20 @@ apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   annotations:
-    app.quarkus.io/commit-id: 5e02534c7abafda424c6fe491fb7e78f60bc89b1
-    app.quarkus.io/build-timestamp: 2022-09-05 - 02:54:40 +0000
+    app.quarkus.io/commit-id: 1a6a18dcb2b0bafe8aea537a1f54a72b2b2bb617
+    app.quarkus.io/build-timestamp: 2022-11-28 - 12:41:17 +0000
   labels:
-    app.kubernetes.io/version: 1.0.0-SNAPSHOT
     app.kubernetes.io/name: otel-knative-java
+    app.kubernetes.io/version: 1.0.0-SNAPSHOT
   name: otel-knative-java
 spec:
   template:
-    metadata:
-      labels:
-        app.kubernetes.io/version: 1.0.0-SNAPSHOT
-        app.kubernetes.io/name: otel-knative-java
     spec:
       containers:
-        - command:
-            - java
-            - -jar
-            - /deployments/quarkus-run.jar
-          env:
+        - env:
             - name: JAVA_APP_JAR
               value: /deployments/quarkus-run.jar
           image: image-registry.openshift-image-registry.svc:5000/otel-knative-java/otel-knative-java:1.0.0-SNAPSHOT
-          imagePullPolicy: IfNotPresent
           name: otel-knative-java
           ports:
             - containerPort: 8080
