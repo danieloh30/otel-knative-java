@@ -27,8 +27,8 @@ public class GreetingResource {
     @Produces(MediaType.TEXT_PLAIN)
     @Path("greeting")
     public String greeting() {
-        LOG.info("Welcome KubeDay Japan 2022, " + username);
-        return "Welcome KubeDay Japan 2022, " + username;
+        LOG.info("Welcome KCD Italy 2023, " + username);
+        return "Welcome KCD Italy 2023, " + username;
     }
 
     @GET
