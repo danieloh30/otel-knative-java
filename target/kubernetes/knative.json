@@ -3,12 +3,12 @@
   "kind" : "Service",
   "metadata" : {
     "annotations" : {
-      "app.quarkus.io/commit-id" : "1a6a18dcb2b0bafe8aea537a1f54a72b2b2bb617",
-      "app.quarkus.io/build-timestamp" : "2022-11-28 - 12:41:17 +0000"
+      "app.quarkus.io/build-timestamp" : "2023-06-04 - 00:18:51 +0000",
+      "app.quarkus.io/commit-id" : "bf1181869f1411ea80ab4845ea52f247320f9bf3"
     },
     "labels" : {
-      "app.kubernetes.io/name" : "otel-knative-java",
-      "app.kubernetes.io/version" : "1.0.0-SNAPSHOT"
+      "app.kubernetes.io/version" : "1.0.0-SNAPSHOT",
+      "app.kubernetes.io/name" : "otel-knative-java"
     },
     "name" : "otel-knative-java"
   },
@@ -16,11 +16,8 @@
     "template" : {
       "spec" : {
         "containers" : [ {
-          "env" : [ {
-            "name" : "JAVA_APP_JAR",
-            "value" : "/deployments/quarkus-run.jar"
-          } ],
           "image" : "image-registry.openshift-image-registry.svc:5000/otel-knative-java/otel-knative-java:1.0.0-SNAPSHOT",
+          "imagePullPolicy" : "Always",
           "name" : "otel-knative-java",
           "ports" : [ {
             "containerPort" : 8080,
