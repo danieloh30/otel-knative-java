@@ -5,12 +5,18 @@ metadata:
   namespace: otel-knative-java
 spec:
   mode: deployment
+  observability:
+    metrics:
+      enableMetrics: true
   config: |
     receivers:
-      zipkin:
+      otlp:
+        protocols:
+          grpc:
+          http:
     processors:
     exporters:
-      jaeger:
+      otlp:
         endpoint: my-jaeger-collector-headless.otel-knative-java.svc:14250
         tls:
           ca_file: "/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt"
@@ -18,6 +24,6 @@ spec:
     service:
       pipelines:
         traces:
-          receivers: [zipkin]
+          receivers: [otlp]
           processors: []
-          exporters: [jaeger, logging]
+          exporters: [otlp]
